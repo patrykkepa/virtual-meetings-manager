@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin-top: 0;
+  margin-bottom: 0;
+  /* overflow: hidden; */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html{
+  background: #f7f7f7
+}
+
+/* ng-angular-popup */
+.toast-right-top {
+    transform: translate(450px) !important;
+  }
+.toast-right-top.active {
+    transform: translate(0px) !important;
+}

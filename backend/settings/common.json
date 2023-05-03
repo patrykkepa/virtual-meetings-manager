@@ -1,0 +1,9 @@
+{
+    "toolInstance": "localhost",
+    "publicIp": "{{set}}",
+    "dbUrl": "mongodb://localhost",
+    "dbName": "roblox",
+    "dbOptions": { "useUnifiedTopology": true },
+    "logDir": "/var/log/roblox",
+    "processPrefix": "roblox-"
+}

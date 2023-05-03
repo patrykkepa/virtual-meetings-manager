@@ -1,0 +1,261 @@
+[{
+  "_id": {
+    "$oid": "63579866b6ac1f8e0f900f7e"
+  },
+  "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbee",
+  "name": "Parafia",
+  "channels": [
+    {
+      "name": "Email",
+      "type": "mail",
+      "value": "contact@gmail.com"
+    },
+    {
+      "name": "Server",
+      "type": "server",
+      "value": "server_number"
+    }
+  ],
+  "acl": [
+    {
+      "alias": "version",
+      "function": "version",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "alias": "getValidator",
+      "function": "getValidator",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "alias": "channels",
+      "collection": "organizations",
+      "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbee",
+      "key": "channels",
+      "methods": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "alias": "announcements",
+      "collection": "organizations",
+      "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbee",
+      "key": "announcements",
+      "methods": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "alias": "schedule",
+      "collection": "organizations",
+      "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbee",
+      "key": "schedule",
+      "methods": [
+        "GET",
+        "PUT"
+      ]
+    }
+  ],
+  "announcements": [
+    {
+      "date": "2023.03.17",
+      "hour": "",
+      "text": "Witajcie!"
+    },
+    {
+      "date": "2023.03.17",
+      "hour": "17:00",
+      "text": "Integracja"
+    }
+  ],
+  "schedule": [
+    {
+      "date": "2023.05.04",
+      "hour": "12:00",
+      "text": "Msza intencyjna",
+      "access": "private"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "63ffa078e8ba6b0cd7fff002"
+  },
+  "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbef",
+  "name": "Dom buddy",
+  "channels": [
+    {
+      "name": "Email",
+      "type": "mail",
+      "value": "contact@gmail.com"
+    },
+    {
+      "name": "Server",
+      "type": "server",
+      "value": "server_number"
+    }
+  ],
+  "acl": [
+    {
+      "alias": "version",
+      "function": "version",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "alias": "getValidator",
+      "function": "getValidator",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "alias": "channels",
+      "collection": "organizations",
+      "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbee",
+      "key": "channels",
+      "methods": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "alias": "announcements",
+      "collection": "organizations",
+      "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbef",
+      "key": "announcements",
+      "methods": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "alias": "schedule",
+      "collection": "organizations",
+      "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbef",
+      "key": "schedule",
+      "methods": [
+        "GET",
+        "PUT"
+      ]
+    }
+  ],
+  "announcements": [
+    {
+      "form": "message",
+      "text": "Witajcie!",
+      "date": "2023.01.01",
+      "hour": " "
+    },
+    {
+      "form": "meeting",
+      "access": "public",
+      "date": "2023.02.02",
+      "text": "Cotygodniowe spotkanie",
+      "hour": "17:00"
+    }
+  ],
+  "schedule": [
+    {
+      "form": "meeting",
+      "access": "private",
+      "date": "07.03.2023",
+      "hour": "12:00",
+      "text": "Msza intencyjna"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "64410d07a3e34c73f8a154f9"
+  },
+  "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbex",
+  "name": "Scientology Army",
+  "channels": [
+    {
+      "name": "Email",
+      "type": "mail",
+      "value": "contact@gmail.com"
+    },
+    {
+      "name": "Server",
+      "type": "server",
+      "value": "server_number"
+    }
+  ],
+  "acl": [
+    {
+      "alias": "version",
+      "function": "version",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "alias": "getValidator",
+      "function": "getValidator",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "alias": "channels",
+      "collection": "organizations",
+      "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbex",
+      "key": "channels",
+      "methods": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "alias": "announcements",
+      "collection": "organizations",
+      "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbex",
+      "key": "announcements",
+      "methods": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "alias": "schedule",
+      "collection": "organizations",
+      "uuid": "12634cf4-91d8-4e66-b88e-110ac95bdbex",
+      "key": "schedule",
+      "methods": [
+        "GET",
+        "PUT"
+      ]
+    }
+  ],
+  "announcements": [
+    {
+      "form": "message",
+      "text": "Witajcie!",
+      "date": "2023.01.01",
+      "hour": " "
+    },
+    {
+      "form": "meeting",
+      "access": "public",
+      "date": "2023.02.02",
+      "text": "Cotygodniowe spotkanie",
+      "hour": "17:00"
+    }
+  ],
+  "schedule": [
+    {
+      "form": "meeting",
+      "access": "private",
+      "date": "07.03.2023",
+      "hour": "12:00",
+      "text": "Msza intencyjna"
+    }
+  ]
+}]

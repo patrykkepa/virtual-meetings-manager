@@ -1,0 +1,24 @@
+<app-user 
+    [profile]="profile"
+    [validatorProfile]="validatorProfile"
+></app-user>
+
+<app-channels
+    [channels]="channels"
+></app-channels>
+
+<app-announcements
+    [channels]="channels"
+    [announcements]="announcements"
+    [entitiesEvents]="entitiesEvents"
+    [entitiesAllowed]="entitiesAllowed"
+    [validatorAnnouncements]="validatorAnnouncements"
+></app-announcements>
+
+<app-schedules
+    [channels]="channels"
+    [schedules]="schedules"
+    [entitiesEvents]="entitiesEvents"
+    [entitiesAllowed]="entitiesAllowed"
+    [validatorSchedules]="validatorSchedules"
+></app-schedules>

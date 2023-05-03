@@ -1,0 +1,50 @@
+{
+  "name": "frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^14.2.7",
+    "@angular/cdk": "^14.2.0",
+    "@angular/common": "^14.2.7",
+    "@angular/compiler": "^14.2.7",
+    "@angular/core": "^14.2.7",
+    "@angular/forms": "^14.2.7",
+    "@angular/material": "^14.2.0",
+    "@angular/platform-browser": "^14.2.7",
+    "@angular/platform-browser-dynamic": "^14.2.7",
+    "@angular/router": "^14.2.7",
+    "@fortawesome/angular-fontawesome": "^0.11.1",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@ngx-loading-bar/core": "^6.0.2",
+    "@ngx-loading-bar/http-client": "^6.0.2",
+    "@types/crypto-js": "^4.1.1",
+    "crypto-js": "^4.1.1",
+    "ng-angular-popup": "^0.1.2",
+    "ngx-spinner": "^14.0.0",
+    "rxjs": "~7.5.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.2.6",
+    "@angular/cli": "~14.2.6",
+    "@angular/compiler-cli": "^14.2.7",
+    "@types/jasmine": "~4.0.0",
+    "jasmine-core": "~4.1.0",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.0.0",
+    "karma-jasmine-html-reporter": "~1.7.0",
+    "typescript": "~4.7.2"
+  }
+}

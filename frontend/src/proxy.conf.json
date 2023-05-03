@@ -1,0 +1,50 @@
+{
+    "/auth": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rest/validatePassword": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rest/changePassword": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rest/profile": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rest/getValidator": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rest/fenigeMock_auth": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rest/test": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rest/entities": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rest/channels": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rest/announcements": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rest/schedule": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/site": {
+        "target": "http://localhost:8080",
+        "secure": false
+    }
+}

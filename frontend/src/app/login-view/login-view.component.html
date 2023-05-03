@@ -1,0 +1,42 @@
+<!-- <div class="toolbar" role="banner">
+    <div class="logo">
+      <div class="logoPlaceholder">
+        <img src="../../assets/RobloxLogo.png" alt="logo">
+      </div>
+      <span>Virtual meeting manager</span>
+    </div>
+    <div class="right">
+      <span></span>
+      <button class="logOutBtn" routerLink="" >Back</button>
+    </div>
+</div> -->
+<div class="content">
+    <div>
+        <form [formGroup]="signInForm" (ngSubmit)="signInOnSubmit()" class="signInForm" *ngIf="signInFormActive">
+          <h2>Log in</h2>
+          <input id="username" type="text" formControlName="username" placeholder="Email or Username">
+          <div class="inputContainer">
+            <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password">
+            <fa-icon *ngIf="!showPassword" (click)="togglePassword('password')" [icon]="faEye" style="margin-left: -30px; cursor: pointer; opacity: 60%;"></fa-icon>
+            <fa-icon *ngIf="showPassword" (click)="togglePassword('password')" [icon]="faEyeSlash" style="margin-left: -30px; cursor: pointer; opacity: 60%;"></fa-icon>
+          </div>
+          <button class="signBtn" type="submit">Sign in</button>
+        </form>
+      
+        <form [formGroup]="signUpForm" (ngSubmit)="signUpOnSubmit()" class="signInForm" *ngIf="!signInFormActive">
+          <h2>Create account</h2>
+          <input id="username" type="text" formControlName="username" placeholder="Login*">
+          <span>You will use your login for authentication.</span>
+          <input id="password" type="password" formControlName="password" placeholder="Password*">
+          <input id="firstName" type="text" formControlName="firstName" placeholder="First name*">
+          <input id="lastName" type="text" formControlName="lastName" placeholder="Last name*">
+          <input id="phone" type="text" formControlName="phone" placeholder="Phone number*">
+          <input id="email" type="text" formControlName="email" placeholder="Email*">
+          <span>You will be able to change your data later.</span>
+          <span>*These fields are required.</span>
+          <button class="signBtn" type="submit">Sign up</button>
+          <button class="toggleSignBtn" (click)="signInFormActiveToggle()">or Sign in</button>
+        </form>
+      </div>
+</div>
+

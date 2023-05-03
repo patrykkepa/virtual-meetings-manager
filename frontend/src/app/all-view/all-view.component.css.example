@@ -1,0 +1,173 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 100px auto 0;
+
+}
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #343a40;
+  color: white;
+  font-weight: 600;
+  padding-right: 20px;
+}
+
+.toolbar img {
+  width: auto;
+  height: 60px;
+  background-color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoPlaceholder {
+  margin: 0 30px;
+  width: 60px;
+  height: 60px;
+  background-color: white;
+}
+
+.toolbar button {
+  margin: 0 0 0 auto;
+  background: none;
+  border: 1px solid white;
+  cursor: pointer;
+  padding: 5px 8px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9)
+}
+
+.toolbar .right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.toolbar .right button {
+  margin-left: 20px;
+}
+
+.main {
+  width: 900px;
+  height: 100%;
+  margin: 100px auto 0 auto;
+  text-align: center;
+}
+
+.card {
+  width: 100%;
+  height: auto;
+  margin: 0 auto 50px auto;
+  padding-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+.cardHeader {
+  background-color: #6c757d;
+  color: rgba(255, 255, 255, 0.95);
+  padding: 6px 0;
+}
+.cardAnnouncements{
+  margin-bottom: 20px;
+}
+h3{
+  margin: 0px;
+}
+h5{
+  margin: 2px 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  padding: 0 30px;
+  color: rgba(0, 0, 0, 0.9);
+}
+.listLabel {
+  width: 90%;
+  padding: 0px 30px;
+  margin: 0px auto 0px auto;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+.listLabelTitle {
+  width: 150px;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.contactInfo {
+  /* width: 1020px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contactInfo p, h5 {
+  margin: 0;
+}
+.contactRow {
+  width: 100%;
+  background: white;
+  /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 8px 0px;
+  margin: 0 auto 5px 0;
+  display: flex;
+  flex-direction: row;
+}
+.contactRowTitle {
+  width: 100px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+  color: rgba(0, 0, 0, 0.4);
+}
+.contactRowValueWrapper {
+  display: flex;
+  flex-direction: row;
+  /* width: 100%; */
+  justify-content: space-between;
+}
+.contactRowValue {
+  padding-left: 20px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1);
+}
+
+
+.row {
+  background: rgb(250, 250, 250);
+  background: white;
+  padding: 0px 30px;
+  width: 90%;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  height: auto;
+}
+.rowValue {
+  width: 150px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+}
+.last {
+  width: auto !important;
+  min-width: 200px;
+}
+.access{
+  color:rgba(0, 0, 0, 0.25);
+}

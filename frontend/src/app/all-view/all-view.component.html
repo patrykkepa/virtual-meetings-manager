@@ -1,0 +1,126 @@
+<ng-container *ngIf="!signInActive">
+  <div class="toolbar" role="banner">
+    <ng-container class="toolbar-wrapper">
+      <div class="logo">
+        <div class="logoPlaceholder">
+          <img src="../../assets/RobloxLogo.png" alt="logo">
+        </div>
+      </div>
+      <span>Virtual meeting manager</span>
+      <div class="right">
+        <span></span>
+        <button class="logOutBtn" routerLink="/" (click)="signInActiveToggle()">Sign in</button>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="searchBar">
+    <form [formGroup]="searchOrganizationForm" (ngSubmit)="searchOrganizationOnSubmit()" class="searchForm" >
+      <input class="inputContainer" type="text" formControlName="name" placeholder="Search by name">
+      <button class="searchBtn" type="submit">Search</button>
+    </form>
+  </div>
+
+  <ng-container *ngIf="!organizations">
+    <div class="main">
+      <h2>Sorry, nothing to show.</h2>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="organizations">
+    <div class="main">
+      <ng-container *ngFor="let organization of organizations, let i = index">
+        <div class="card">
+          <div class="cardHeader">
+            <h3 class="cardTitle">{{organization.name}}</h3>
+          </div>
+
+          <!-- contact info -->
+          <div class="contactRowWrapper">
+            <ng-container *ngFor="let channel of organization.channels">
+              <div class="contactInfo" >
+                <ng-container >
+                    <div class="contactRow">
+                        <h5 class="contactRowTitle">{{channel.name}}</h5>
+                        <div class="contactRowValueWrapper">
+                            <p class="contactRowValue">{{channel.value}}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <h5 class="rowTitle">Email: </h5>
+                        <div class="rowValueWrapper">
+                            <p class="rowValue">{{channel.value}}</p>
+                        </div>
+                    </div> -->
+                </ng-container>
+            </div>
+            </ng-container>
+          </div>
+
+          <div class="cardAnnouncements">
+            <div class="header">
+              <h4>Announcements</h4>
+            </div>
+            <!-- <div class="listLabel">
+                <h5 class="listLabelTitle ">Date</h5>
+                <h5 class="listLabelTitle ">Hour</h5>
+                <h5 class="listLabelTitle last">Message</h5>
+            </div> -->
+            <ng-container *ngFor="let announcement of organization.announcements">
+              <div class="row" >
+                <div class="rowTitle">
+                  <p class="rowValue " title="{{announcement.date}}">{{(announcement.date?.length > 25) ? announcement.date.substring(0,25)+'...' : announcement.date}}</p>
+                  <p class="rowValue " title="{{announcement.hour}}">{{announcement.hour}}</p>
+                </div>
+                <!-- <p class="rowValue last" title="{{announcement.text}}">{{(announcement.text?.length > 30) ? announcement.text.substring(0,30)+'...' : announcement.text}}</p> -->
+                <p class="rowValue last" title="{{announcement.text}}">{{announcement.text}}</p>
+
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="cardSchedules">
+            <div class="header">
+              <h4>Schedules</h4>
+            </div>
+            <!-- <div class="listLabel">
+              <h5 class="listLabelTitle">Date</h5>
+              <h5 class="listLabelTitle">Hours</h5>
+              <h5 class="listLabelTitle last">Message</h5>
+            </div> -->
+            <ng-container *ngFor="let schedule of organization.schedule">
+              <div class="row" >
+                <div class="rowTitle">
+                  <p class="rowValue " title="{{schedule.date}}">{{(schedule.date?.length > 25) ? schedule.date.substring(0,25)+'...' : schedule.date}}</p>
+                  <p class="rowValue " title="{{schedule.hour}}">{{schedule.hour}}</p>  
+                </div>
+                <p class="rowValue last" title="{{schedule.text}}">{{(schedule.text?.length > 30) ? schedule.text.substring(0,30)+'...' : schedule.text}} <span class="access"> [ {{schedule.access}} ]</span></p>
+              </div>
+            </ng-container>
+          </div>
+
+        </div>
+
+      </ng-container>
+    </div>
+  </ng-container>
+
+
+</ng-container>
+
+
+<!-- Logowanie -->
+<ng-container *ngIf="signInActive">
+    <div class="toolbar" role="banner">
+        <div class="logo">
+          <div class="logoPlaceholder">
+            <img src="../../assets/RobloxLogo.png" alt="logo">
+          </div>
+        </div>
+        <span>Virtual meeting manager</span>
+        <div class="right">
+          <span></span>
+          <button class="logOutBtn" routerLink="/" (click)="signInActiveToggle()">Go back</button>
+        </div>
+    </div>
+  <app-login-view></app-login-view>
+</ng-container>

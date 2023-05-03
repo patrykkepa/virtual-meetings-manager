@@ -1,0 +1,164 @@
+<div *ngIf="schedules && channels" class="schedules">
+    <!-- Nagłówek schedules -->
+    <div class="header">
+        <h2>Schedules</h2><fa-icon [icon]="faInfo"  style="margin-left: 5px; margin-top:20px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: transparent; opacity:50%;" title="You can update, delete and add schedule item."></fa-icon>
+        <button *ngIf="!schedulesEditionActive && announcementNumber == null" (click)="schedulesEditionToggle()">{{schedules.length == 0 ? 'Add' : 'Edit'}}</button>
+    </div>
+    <div class="listLabel">
+        <h5 class="listLabelTitle short">Date</h5>
+        <h5 class="listLabelTitle short">Hours</h5>
+        <h5 class="listLabelTitle last">Message</h5>
+        <h5 class="listLabelTitle short">Access</h5>
+    </div>
+    <!-- Kiedy nie ma schedules -->
+    <div *ngIf="schedules.length === 0 && !schedulesEditionActive" class="noSchedules">
+        <h4>Please, add schedules.</h4>
+    </div>
+    
+    <!-- Lista schedules -->
+    <div *ngFor="let announcement of schedules, let i = index" class="list">
+        <div *ngIf="!schedulesEditionActive">
+            <div class="row" [ngClass]="announcementNumber == i ? 'special' : 'regular'">
+                <ng-container *ngIf="announcementNumber != i ">
+                    <button (click)="schedulesRowClick(i)" class="moreBtn">
+                        <fa-icon [icon]="faAngleRight" title="More informations."></fa-icon>
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="announcementNumber == i">
+                    <button (click)="schedulesRowClick(i)" class="moreBtn">
+                        <fa-icon [icon]="faAngleDown"></fa-icon>
+                    </button>
+                </ng-container>
+                <p class="rowValue short" title="{{announcement.date}}">{{(announcement.date?.length > 25) ? announcement.date.substring(0,25)+'...' : announcement.date}}</p>
+                <p class="rowValue short" title="{{announcement.hour}}">{{announcement.hour}}</p>
+                <p id="rowValueText" class="rowValue last" title="{{announcement.text}}">{{(announcement.text?.length > 30) ? announcement.text.substring(0,30)+'...' : announcement.text}}</p>
+                <p class="rowValue short" title="{{announcement.access}}">{{announcement.access}}</p>
+            </div>
+        </div>
+
+        <!-- Edycja schedules -->
+        <div *ngIf="schedulesEditionActive" class="editRowContainer">
+            <form [formGroup]="schedulesEditForm" (keydown.enter)="$event.preventDefault()">
+                <div [formGroupName]="i" class="editRow">
+                    <div class="row">
+                        <input formControlName="date" class="editRowElement " placeholder="{{announcement.date}}" value="{{announcement.date}}"
+                            (focus)="isDateFocused = true" (blur)="isDateFocused = false">
+                        <input formControlName="hour" class="editRowElement " placeholder="{{announcement.hour}}" value="{{announcement.hour}}"
+                            (focus)="isHourFocused = true" (blur)="isHourFocused = false">
+                        <input formControlName="text" class="editRowElement lastEdit" placeholder="{{announcement.text}}" value="{{announcement.text}}"
+                            (focus)="isTextFocused = true" (blur)="isTextFocused = false">
+                        <input formControlName="access" class="editRowElement " placeholder="{{announcement.access}}" value="{{announcement.access}}"
+                            (focus)="isTextFocused = true" (blur)="isTextFocused = false">
+
+                        <button class="editDeleteBtn" (click)="schedulesOnDelete(i)"><fa-icon [icon]="faXmark" title="Delete announcement."></fa-icon></button>
+                    </div>
+                    <ng-container>
+                        <span *ngIf="schedulesEditForm.controls[i].get('date')?.hasError('required') && isDateFocused === false">
+                            Full date is required!
+                        </span>
+                        <span *ngIf="schedulesEditForm.controls[i].get('date')?.hasError('pattern') && isDateFocused === false">
+                            Bad full date format!
+                        </span>
+                        <span *ngIf="schedulesEditForm.controls[i].get('hour')?.hasError('pattern') && isHourFocused === false">
+                            Bad phone number format!
+                        </span>
+                        <span *ngIf="schedulesEditForm.controls[i].get('text')?.hasError('text') && isTextFocused === false">
+                            Bad text format!
+                        </span>
+                        <span *ngIf="schedulesEditForm.controls[i].get('access')?.hasError('access') && isTextFocused === false">
+                            Bad access format!
+                        </span>
+                    </ng-container>
+                </div>
+            </form>
+
+        </div>
+        
+    </div>
+
+    <!-- Dodanie nowego announcement -->
+    <form *ngIf="schedulesEditionActive" [formGroup]="schedulesAddForm" (keydown.enter)="$event.preventDefault()">
+        <div class="schedulesAdd">
+            <!-- Tablica schedules które zostaną dodane -->
+            <h5 *ngIf="schedulesAddArr.value.length > 0" class="addLabelTitle">Confirm to add new schedule.</h5>
+            <div *ngFor="let add of schedulesAddArr.value; let j = index" class="addRow">
+                <div class="row">
+                    <input class="addRowElement" value={{add.date}} placeholder="---" readonly>
+                    <input class="addRowElement" value={{add.hour}} placeholder="---" readonly>
+                    <input class="addRowElement " value={{add.text}} placeholder="---" readonly>
+                    <input class="addRowElement " value={{add.access}} placeholder="---" readonly>
+                    <button class="editDeleteBtn" (click)="schedulesAddArrOnDelete(j)"><fa-icon [icon]="faXmark" title="Delete new announcement."></fa-icon></button>
+                </div>
+            </div>
+
+            <!-- Formularz dodania announcement -->
+            <h5 class="addLabelTitle">Add new schedule:</h5>
+            <div id="addRow" class="row">
+                <div class="addInputContainer">
+                    <input  formControlName="date" [(ngModel)]="date" class="addInput " placeholder="Full date" (focus)="isAddDateFocused = true" (blur)="isAddDateFocused = false">
+                    <fa-icon [icon]="faInfo" [style.opacity]="isAddDateFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Enter the event date."></fa-icon>
+                </div>
+                <div class="addInputContainer">
+                    <input formControlName="hour" [(ngModel)]="hour" class="addInput " placeholder="Starting hour" (focus)="isAddHourFocused = true" (blur)="isAddHourFocused = false">
+                    <fa-icon [icon]="faInfo" [style.opacity]="isAddHourFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Enter the event hour"></fa-icon>
+                </div>
+                <div class="addInputContainer">
+                    <input formControlName="text" [(ngModel)]="text" class="addInput lastEdit" placeholder="Message" (focus)="isAddTextFocused = true" (blur)="isAddTextFocused = false">
+                    <fa-icon  [icon]="faInfo" [style.opacity]="isAddTextFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Enter the event description."></fa-icon>
+                </div>
+                <div class="addInputContainer">
+                    <input formControlName="access" [(ngModel)]="access" class="addInput " placeholder="Message" (focus)="isAddTextFocused = true" (blur)="isAddTextFocused = false">
+                    <fa-icon  [icon]="faInfo" [style.opacity]="isAddTextFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Enter the event access type."></fa-icon>
+                </div>
+                <button class="editDeleteBtn" (click)="schedulesOnAdd()" [disabled]="!schedulesAddForm.valid"><fa-icon [icon]="faPlus" title="Create new announcement."></fa-icon></button>
+            </div>
+            <ng-container *ngIf="
+                schedulesAddForm.get('date')?.invalid && 
+                schedulesAddForm.get('date')?.errors &&
+                schedulesAddForm.get('date')?.dirty || 
+                schedulesAddForm.get('date')?.touched">
+                <span *ngIf="schedulesAddForm.get('date')?.hasError('required') && isAddDateFocused === false">
+                    Full date is required!
+                </span>
+                <span *ngIf="schedulesAddForm.get('date')?.hasError('pattern') && isAddDateFocused === false">
+                    Bad full date format!
+                </span>
+            </ng-container>
+            <ng-container *ngIf="
+                schedulesAddForm.get('hour')?.invalid && 
+                schedulesAddForm.get('hour')?.errors &&
+                schedulesAddForm.get('hour')?.dirty || 
+                schedulesAddForm.get('hour')?.touched">
+                <span *ngIf="schedulesAddForm.get('hour')?.hasError('pattern') && isAddHourFocused === false">
+                    Bad hour format!
+                </span>
+            </ng-container>
+            <ng-container *ngIf="
+                schedulesAddForm.get('text')?.invalid && 
+                schedulesAddForm.get('text')?.errors &&
+                schedulesAddForm.get('text')?.dirty || 
+                schedulesAddForm.get('text')?.touched">
+                <span *ngIf="schedulesAddForm.get('text')?.hasError('text') && isAddTextFocused === false">
+                    Bad text format!
+                </span>
+            </ng-container>
+            <ng-container *ngIf="
+                schedulesAddForm.get('access')?.invalid && 
+                schedulesAddForm.get('access')?.errors &&
+                schedulesAddForm.get('access')?.dirty || 
+                schedulesAddForm.get('access')?.touched">
+                <span *ngIf="schedulesAddForm.get('access')?.hasError('access') && isAddTextFocused === false">
+                    Bad access format!
+                </span>
+            </ng-container>
+            <div class="submitBtnContainer">
+                <button *ngIf="schedulesEditionActive" [disabled]="!schedulesEditForm.valid" (click)="schedulesOnEdit()" class="submitBtn">Confirm</button>
+                <button *ngIf="schedulesEditionActive" (click)="schedulesEditionToggle()" class="submitBtn">Cancel</button>
+            </div>
+        </div>
+
+    </form>
+
+
+    
+</div>

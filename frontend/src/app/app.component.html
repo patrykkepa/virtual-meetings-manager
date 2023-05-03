@@ -1,0 +1,22 @@
+<ngx-loading-bar [includeSpinner]="false" ref="http"></ngx-loading-bar>
+
+<div *ngIf="loggedIn === null" id="loader" class="loader">
+  <ngx-spinner bdColor = "rgba(255, 255, 255, 1)" size = "default" color = "#8a8a8a" type = "ball-beat" [fullScreen] = "true"></ngx-spinner>
+</div>
+
+<div *ngIf="!loggedIn">
+  <!-- <app-login-view></app-login-view> -->
+  <app-all-view></app-all-view>
+</div>
+
+<div *ngIf="loggedIn">
+  <app-top-bar></app-top-bar>
+
+  <div class="content" role="main">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<lib-ng-toast></lib-ng-toast>
+
+
+

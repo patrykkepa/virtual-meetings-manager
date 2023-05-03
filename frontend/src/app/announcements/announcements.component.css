@@ -1,0 +1,385 @@
+.noAnnouncements {
+    margin-top: 20px;
+    margin-left: 60px;
+    color: rgba(0, 0, 0, 0.6);
+}
+.announcements {
+    margin-bottom: 50px;
+}
+.announcements input {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background: transparent;
+}
+.announcements select {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+/* HEADER */
+.header {
+    display: flex;
+    flex-direction: row;
+}
+.header button {
+    margin: auto 0 auto auto;
+    background: none;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 60px;
+    padding: 5px 8px;
+    font-weight: 700;
+}
+
+
+/* MAIN VIEW */
+.list {
+    width: 1020px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.list p, h5 {
+    margin: auto 0;
+}
+.listLabel {
+    /* background: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
+    padding: 0px 60px;
+    margin: 20px auto 0px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+}
+.listLabelTitle {
+    width: 220px;
+    height: 27px;
+    /* font-size: 13px; */
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.4);
+}
+#listLabelTitleText {
+    width: 330px;
+}
+#listLabelTitlePushover {
+    width: 110px;
+}
+.row {
+    /* background: rgb(250, 250, 250); */
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; */
+    /* background: white; */
+    padding: 8px 0px;
+    margin: 0px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    /* width: 740px; */
+    /* justify-content: space-between; */
+}
+.row button {
+    margin: 0 0 0 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    padding: 5px 0px;
+    font-weight: 500;
+}
+.rowValue {
+    width: 220px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1);
+}
+.rowValue input {
+    margin-right: 12px;
+}
+#rowValueText {
+    width: 330px;
+}
+#rowValuePushover {
+    width: 110px;
+}
+
+
+
+/* DROP-DOWN */
+.dropList {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background-color: white;
+    padding: 0px 0px 0px 60px;
+    border-radius: 0 0 10px 10px;
+    box-sizing: border-box;
+}
+.dropList h5 {
+    color: rgba(0, 0, 0, 0.3);
+}
+.dropListLabel {
+    background: rgb(250, 250, 250);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    background: white;
+    padding: 5px 0px 5px 0px;
+    margin: 0 0 0 0;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.7)
+}
+.dropListLabel h5 {
+    color: rgba(0, 0, 0, 0.3) !important
+}
+.dropListLabel button {
+    margin-left: auto;
+    margin: 0 0 0 auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    padding: 5px 5px;
+    font-weight: 500;
+}
+.dropListLabelTitle {
+    width: 220px;
+    font-size: 12px;
+    padding-top: 8px;
+    padding-bottom: 3px;
+}
+#dropListLabelTitleDescription {
+    width: 550px;
+}
+.dropListLabelTitleGroup {
+    display: flex;
+    flex-direction: row;
+    height: 27px;
+    padding-top: 8px;
+    padding-bottom: 3px;
+    box-sizing: border-box;
+}
+.dropListLabelTitleGroup h5 {
+    margin-right: 5px;
+}
+
+#dropRowValueEvent {
+    width: 220px
+}
+#dropRowValueDescription {
+    width: 550px;
+}
+#dropRowValueCheckboxes {
+    width: 110px;
+}
+#dropRowValueCheckboxes input {
+    cursor: pointer;
+}
+.dropRowContainer {
+    box-sizing: border-box;
+    background: rgb(250, 250, 250);
+    background: white;
+    padding: 0px 0px;
+    margin: 0 auto 0px 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+.dropRow {
+    background: white;
+    padding: 8px 0px;
+    margin: 0px auto 0px 0;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    /* width: 740px; */
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.05); */
+}
+.dropRow button {
+    margin-left: auto;
+    margin: 0 0 0 auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    padding: 5px 5px;
+    font-weight: 500;
+}
+
+
+/* EDIT VIEW*/
+.editRowContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.editRow {
+    width: 1020px;
+    /* display: none; */
+    margin-bottom: 0px;
+    /* display: flex;
+    flex-direction: column; */
+    align-items: center;
+    padding: 0 0 0 60px;
+    box-sizing: border-box;
+}
+.editRowElement {
+    width: 125px;
+    height: 25px;
+    margin: 0 20px 0 0;
+}
+.last {
+    width: 550px !important;
+}
+.short {
+    width: 150px !important;
+}
+.editDeleteBtn {
+    margin-left: auto !important;
+}
+
+
+
+/* ADD VIEW */
+.announcementsAdd {
+    /* width: 740px; */
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 60px;
+    margin-top: 20px;
+}
+.announcementsAdd h5 {
+    color: rgba(0, 0, 0, 1);
+}
+#addRow {
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; */
+    margin-top: 10px;
+}
+.addLabelTitle {
+    margin-top: 40px;
+}
+.addInputContainer {
+    margin-right: 20px;
+}
+.addInput {
+    width: 130px;
+    height: 25px;
+    margin: 0 0px 0 0;
+}
+.addRow {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+}
+.addRowElement {
+    width: 196px;
+    margin: 0 20px 0 0;
+}
+.addRowElement:focus {
+    outline: none;
+}
+
+
+
+
+/* BUTTONS */
+.submitBtnContainer {
+    margin: 20px auto 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.submitBtn {
+    margin: 20px 10px 0 10px;
+    background: transparent;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 100px;
+    padding: 5px 8px;
+    font-weight: 700;
+}
+.moreBtn {
+    font-weight: 700 !important;
+}
+.moreBtn img {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+/* HELPERS */
+.visible {
+    display: flex;
+    margin-bottom: 20px;
+}
+.hidden {
+    display: none;
+}
+.special {
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; */
+    margin-bottom: 0px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    height: 41px;
+    background: rgba(0, 0, 0, 0.05);
+    width: 1020px;
+}
+.special p {
+    color: black;
+}
+
+
+
+/* VALIDATION */
+input.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+span{
+    color: red;
+    margin-left: 20px;
+    font-size: 12px;
+}
+
+
+
+
+
+
+
+
+/* OLD */
+/* .announcementsRowInactive {
+    background: rgb(250, 250, 250);
+    background: white;
+    padding: 8px 0px;
+    margin: 0 0 5px 0;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+} */
+
+/* .announcementsRowInactive button {
+    margin-left: auto;
+    margin: 0 0 0 auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 60px;
+    padding: 5px 5px;
+    font-weight: 500;
+} */
+/* #deleteSubBtn {
+    margin-left: auto;
+} */
+/* #inactiveSub {
+    padding: 12px 0px 8px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+} */
+/* #announcementsRowElementEventInactive {
+    width: 220px;
+}
+#announcementsRowElementDescriptionInactive {
+    width: 660px;
+} */

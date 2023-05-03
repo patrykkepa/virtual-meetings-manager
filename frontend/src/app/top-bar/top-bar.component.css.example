@@ -1,0 +1,57 @@
+.toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: #114b86; */
+    background-color: #343a40;
+    color: white;
+    font-weight: 600;
+    padding-right: 20px;
+  }
+
+  .toolbar button {
+    margin: 0 0 0 auto;
+    background: none;
+    border: 1px solid white;
+    cursor: pointer;
+    padding: 5px 8px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9)
+  }
+
+  .toolbar img {
+    width: auto;
+    height: 60px;
+    background: transparent;
+    background-color:transparent;
+    background-color: white;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  .logoPlaceholder {
+    margin: 0 30px;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+  }
+
+  .toolbar .right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .toolbar .right .userRole {
+    margin-right: 10px;
+  }
+  .toolbar .right button {
+    margin-left: 20px;
+  }

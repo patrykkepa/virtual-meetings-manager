@@ -1,0 +1,241 @@
+<div *ngIf="subscribers && channels" class="subscribers">
+    <!-- Nagłówek subscribers -->
+    <div class="header">
+        <h2>Subscribers</h2>
+        <button *ngIf="!subscribersEditionActive && subscriberNumber == null" (click)="subscribersEditionToggle()">{{subscribers.length == 0 ? 'Add' : 'Edit'}}</button>
+    </div>
+    <div class="listLabel">
+        <h5 class="listLabelTitle">Name</h5>
+        <h5 *ngIf="channels.includes('sms')" class="listLabelTitle">Phone</h5>
+        <h5 *ngIf="channels.includes('mail')" id="{{subscribersEditionActive ? '' : 'listLabelTitleEmail'}}" class="listLabelTitle">Email</h5>
+        <h5 *ngIf="channels.includes('pushover')" id="listLabelTitlePushover" class="listLabelTitle">Pushover</h5>
+    </div>
+    <!-- Kiedy nie ma sybskrybentów -->
+    <div *ngIf="subscribers.length === 0 && !subscribersEditionActive" class="noSubscribers">
+        <h4>Please, add subscribers.</h4>
+    </div>
+    
+    <!-- Lista subskrybentów -->
+    <div *ngFor="let subscriber of subscribers, let i = index" class="list">
+        <div *ngIf="!subscribersEditionActive">
+            <div class="row" [ngClass]="subscriberNumber == i ? 'special' : 'regular'">
+                <ng-container *ngIf="subscriberNumber != i ">
+                    <button (click)="subscribersRowClick(i)" class="moreBtn">
+                        <fa-icon [icon]="faAngleRight" title="More informations."></fa-icon>
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="subscriberNumber == i">
+                    <button (click)="subscribersRowClick(i)" class="moreBtn">
+                        <fa-icon [icon]="faAngleDown"></fa-icon>
+                    </button>
+                </ng-container>
+                <p class="rowValue" title="{{subscriber.name}}">{{(subscriber.name?.length > 25) ? subscriber.name.substring(0,25)+'...' : subscriber.name}}</p>
+                <p *ngIf="channels.includes('sms')" class="rowValue">{{subscriber.to.sms}}</p>
+                <p *ngIf="channels.includes('mail')" id="rowValueEmail" class="rowValue" title="{{subscriber.to.mail}}">{{(subscriber.to.mail?.length > 30) ? subscriber.to.mail.substring(0,30)+'...' : subscriber.to.mail}}</p>
+                <p *ngIf="channels.includes('pushover') && subscriber.to.pushover" id="rowValuePushover" class="rowValue">Available</p>
+            </div>
+            <!-- Rozwinięcie subskrybenta -->
+            <div class="dropList" [ngClass]="subscriberNumber == i ? 'visible' : 'hidden'">
+                <div class="dropListLabel">
+                    <h5 class="dropListLabelTitle">Event name</h5>
+                    <h5 id="dropListLabelTitleDescription" class="dropListLabelTitle">Description</h5>
+                    <div class="dropListLabelTitleGroup" *ngFor="let channel of channels">
+                        <h5>{{channel.charAt(0).toUpperCase()}}{{channel.slice(1)}}</h5>
+                    </div>
+                </div>
+                <ng-container *ngIf="subscriber.subscriptions.length == 0">
+                    <div class="dropRowContainer">
+                        <div class="row">
+                            <p class="rowValue">No active subscriptions!</p>
+                        </div>
+                    </div>
+                </ng-container>
+                <div *ngFor="let sub of subscriber.subscriptions; let j = index" class="dropRowContainer" >
+                    <ng-container *ngIf="entitiesAllowed.value.includes(sub.entity)">
+                        <form [formGroup]="subscribersEditForm">
+                            <ng-container [formGroupName]="i">
+                                <ng-container formArrayName="subscriptions">
+                                    <ng-container [formGroupName]="j">
+                                        <div class="dropRow">
+                                            <p id="dropRowValueEvent" class="rowValue">{{sub.event}}</p>
+                                            <ng-container *ngIf="entEventsArray.length == 0">
+                                                <p id="dropRowValueDescription" class="rowValue" title="{{sub.description}}"></p>
+                                            </ng-container>
+                                            <ng-container *ngIf="entEventsArray.length != 0">
+                                                <ng-container *ngFor="let event of entEventsArray">
+                                                    <!-- <ng-container *ngIf="event.entity.includes(sub.entity) && event.event.includes(sub.event)"> -->
+                                                    <ng-container *ngIf="event.entity.includes(sub.entity) && event.entity.length === sub.entity.length && event.event.includes(sub.event)">
+                                                        <!-- <p id="dropRowValueDescription" class="rowValue" title="{{sub.description}}">{{(sub.description?.length > 80) ? sub.description.substring(0,80)+'...' : sub.description}}</p> -->
+                                                        <p id="dropRowValueDescription" class="rowValue" title="{{sub.description}}">{{(event.description?.length > 80) ? event.description.substring(0,80)+'...' : event.description}}</p>
+                                                        <!-- <p>{{event.description}}</p> -->
+                                                    </ng-container>
+                                                </ng-container>
+                                            </ng-container>
+                                            <div id="dropRowValueCheckboxes" class="rowValue">
+                                                <ng-container *ngFor="let channel of channels">
+                                                    <ng-container *ngIf="sub.by.includes(channel)">
+                                                        <input  (click)="destinationOnDelete(i, j, channel)" checked type="checkbox">
+                                                    </ng-container>
+                                                    <ng-container *ngIf="!sub.by.includes(channel)">
+                                                        <input (click)="destinationOnSelect(i, j, channel)" [disabled]="!subscriber.to[channel]" type="checkbox" title="You need to add this communication channel, to be able to activate it.">
+                                                    </ng-container>
+                                                </ng-container>
+                                            </div>
+                                            <!-- <button (click)="subscriptionsOnDelete(sub, i, j)" id="deleteSubBtn"><fa-icon [icon]="faXmark" title="Unsubscribe."></fa-icon></button> -->
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </form>
+                    </ng-container>
+                </div>
+                <!-- Nieaktywne subskrypcje -->
+                <!-- <h5 id="inactiveSub" class="dropRowContainer">Inactive events</h5>
+                <div class="dropRowContainer">
+                    <ng-container *ngFor="let element of inactiveSubscriptions">
+                        <ng-container *ngIf="element.name == subscriber.name">
+                            <ng-container *ngIf="element.events.length == 0">
+                                <div class="row">
+                                    <p class="rowValue">All subscriptions are active!</p>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngFor="let event of element.events; let j = index">
+                                <div class="subscribersRowInactive">
+                                    <p id="subscribersRowElementEventInactive" class="rowValue">{{event.event}}</p>
+                                    <p id="subscribersRowElementDescriptionInactive" class="rowValue" title="{{event.description}}">{{(event.description?.length > 90) ? event.description.substring(0,90)+'...' : event.description}}</p>
+                                    <button (click)="subscriptionsOnAdd(event, i, j)"><fa-icon [icon]="faPlus" title="Activate subscription and choose communication channel."></fa-icon></button>
+                                </div>
+                            </ng-container>
+                            
+                        </ng-container>
+                    </ng-container>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Edycja subskrybentów -->
+        <div *ngIf="subscribersEditionActive" class="editRowContainer">
+            <form [formGroup]="subscribersEditForm" (keydown.enter)="$event.preventDefault()">
+                <div [formGroupName]="i" class="editRow">
+                    <div class="row">
+                        <input formControlName="name" class="editRowElement" placeholder="{{subscriber.name}}" value="{{subscriber.name}}"
+                            (focus)="isNameFocused = true" (blur)="isNameFocused = false">
+                        <input *ngIf="channels.includes('sms')" formControlName="sms" class="editRowElement" placeholder="{{subscriber.to.sms}}" value="{{subscriber.to.sms}}"
+                            (focus)="isPhoneFocused = true" (blur)="isPhoneFocused = false">
+                        <input *ngIf="channels.includes('mail')" formControlName="mail" class="editRowElement" placeholder="{{subscriber.to.mail}}" value="{{subscriber.to.mail}}"
+                            (focus)="isMailFocused = true" (blur)="isMailFocused = false">
+                        <input *ngIf="channels.includes('pushover')" formControlName="pushover" class="editRowElement" placeholder="{{subscriber.to.pushover}}" value="{{subscriber.to.pushover}}"
+                            (focus)="isPushoverFocused = true" (blur)="isPushoverFocused = false">
+
+                        <button class="editDeleteBtn" (click)="subscribersOnDelete(i)"><fa-icon [icon]="faXmark" title="Delete subscriber."></fa-icon></button>
+                    </div>
+                    <ng-container>
+                        <span *ngIf="subscribersEditForm.controls[i].get('name')?.hasError('required') && isNameFocused === false">
+                            Full name is required!
+                        </span>
+                        <span *ngIf="subscribersEditForm.controls[i].get('name')?.hasError('pattern') && isNameFocused === false">
+                            Bad full name format!
+                        </span>
+                        <span *ngIf="subscribersEditForm.controls[i].get('sms')?.hasError('pattern') && isPhoneFocused === false">
+                            Bad phone number format!
+                        </span>
+                        <span *ngIf="subscribersEditForm.controls[i].get('mail')?.hasError('email') && isMailFocused === false">
+                            Bad email format!
+                        </span>
+                        <span *ngIf="subscribersEditForm.controls[i].get('pushover')?.hasError('pattern') && isPushoverFocused === false">
+                            Bad pushover format!
+                        </span>
+                    </ng-container>
+                </div>
+            </form>
+
+        </div>
+        
+    </div>
+
+    <!-- Dodanie nowego subskrybenta -->
+    <form *ngIf="subscribersEditionActive" [formGroup]="subscribersAddForm" (keydown.enter)="$event.preventDefault()">
+        <div class="subscribersAdd">
+            <!-- Tablica subskrybentów którzy zostaną dodani -->
+            <h5 *ngIf="subscribersAddArr.value.length > 0" class="addLabelTitle">Confirm to add new subsriber.</h5>
+            <div *ngFor="let add of subscribersAddArr.value; let j = index" class="addRow">
+                <div class="row">
+                    <input class="addRowElement" value={{add.name}} readonly>
+                    <input *ngIf="channels.includes('sms')" class="addRowElement" value={{add.sms}} placeholder="---" readonly>
+                    <input *ngIf="channels.includes('mail')" class="addRowElement" value={{add.mail}} placeholder="---" readonly>
+                    <input *ngIf="channels.includes('pushover')" class="addRowElement" value={{add.pushover}} placeholder="---" readonly>
+                    <button class="editDeleteBtn" (click)="subscribersAddArrOnDelete(j)"><fa-icon [icon]="faXmark" title="Delete new subscriber."></fa-icon></button>
+                </div>
+            </div>
+
+            <!-- Formularz dodania subskrybenta -->
+            <h5 class="addLabelTitle">Add new subscriber:</h5>
+            <div id="addRow" class="row">
+                <div class="addInputContainer">
+                    <input  formControlName="name" [(ngModel)]="name" class="addInput" placeholder="Full name" (focus)="isAddNameFocused = true" (blur)="isAddNameFocused = false">
+                    <fa-icon [icon]="faInfo" [style.opacity]="isAddNameFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Use the name you will use to identify subscribers."></fa-icon>
+                </div>
+                <div class="addInputContainer">
+                    <input *ngIf="channels.includes('sms')" formControlName="sms" [(ngModel)]="sms" class="addInput" placeholder="Phone with country code" (focus)="isAddPhoneFocused = true" (blur)="isAddPhoneFocused = false">
+                    <fa-icon *ngIf="channels.includes('sms')" [icon]="faInfo" [style.opacity]="isAddPhoneFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Use phone number format with country code."></fa-icon>
+                </div>
+                <div class="addInputContainer">
+                    <input *ngIf="channels.includes('mail')" formControlName="mail" [(ngModel)]="mail" class="addInput" placeholder="Email" (focus)="isAddMailFocused = true" (blur)="isAddMailFocused = false">
+                    <fa-icon *ngIf="channels.includes('mail')" [icon]="faInfo" [style.opacity]="isAddMailFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Use correct email format."></fa-icon>
+                </div>
+                <div class="addInputContainer">
+                    <input *ngIf="channels.includes('pushover')" formControlName="pushover" [(ngModel)]="pushover" class="addInput" placeholder="Pushover" (focus)="isAddPushoverFocused = true" (blur)="isAddPushoverFocused = false">
+                    <fa-icon *ngIf="channels.includes('pushover')" [icon]="faInfo" [style.opacity]="isAddPushoverFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Use pushover code format. You can generate it in pushover mobile app."></fa-icon>
+                </div>
+                <button class="editDeleteBtn" (click)="subscribersOnAdd()" [disabled]="!subscribersAddForm.valid"><fa-icon [icon]="faPlus" title="Create new subscriber."></fa-icon></button>
+            </div>
+            <ng-container *ngIf="
+                subscribersAddForm.get('name')?.invalid && 
+                subscribersAddForm.get('name')?.errors &&
+                subscribersAddForm.get('name')?.dirty || 
+                subscribersAddForm.get('name')?.touched">
+                <span *ngIf="subscribersAddForm.get('name')?.hasError('required') && isAddNameFocused === false">
+                    Full name is required!
+                </span>
+                <span *ngIf="subscribersAddForm.get('name')?.hasError('pattern') && isAddNameFocused === false">
+                    Bad full name format!
+                </span>
+            </ng-container>
+            <ng-container *ngIf="
+                subscribersAddForm.get('sms')?.invalid && 
+                subscribersAddForm.get('sms')?.errors &&
+                subscribersAddForm.get('sms')?.dirty || 
+                subscribersAddForm.get('sms')?.touched">
+                <span *ngIf="subscribersAddForm.get('sms')?.hasError('pattern') && isAddPhoneFocused === false">
+                    Bad sms format!
+                </span>
+            </ng-container>
+            <ng-container *ngIf="
+                subscribersAddForm.get('mail')?.invalid && 
+                subscribersAddForm.get('mail')?.errors &&
+                subscribersAddForm.get('mail')?.dirty || 
+                subscribersAddForm.get('mail')?.touched">
+                <span *ngIf="subscribersAddForm.get('mail')?.hasError('email') && isAddMailFocused === false">
+                    Bad mail format!
+                </span>
+            </ng-container>
+            <ng-container *ngIf="
+            subscribersAddForm.get('pushover')?.invalid && 
+            subscribersAddForm.get('pushover')?.errors &&
+            subscribersAddForm.get('pushover')?.dirty || 
+            subscribersAddForm.get('pushover')?.touched">
+            <span *ngIf="subscribersAddForm.get('pushover')?.hasError('pattern') && isAddPushoverFocused === false">
+                Bad pushover format!
+            </span>
+        </ng-container>
+            <div class="submitBtnContainer">
+                <button *ngIf="subscribersEditionActive" [disabled]="!subscribersEditForm.valid" (click)="subscribersOnEdit()" class="submitBtn">Confirm</button>
+                <button *ngIf="subscribersEditionActive" (click)="subscribersEditionToggle()" class="submitBtn">Cancel</button>
+            </div>
+        </div>
+
+    </form>
+
+
+    
+</div>

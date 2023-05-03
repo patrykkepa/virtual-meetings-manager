@@ -1,0 +1,90 @@
+<div *ngIf="channels" class="accountSettings">
+    <div class="header">
+        <h2 >Contact info</h2><fa-icon [icon]="faInfo"  style="margin-left: -805px; margin-top:20px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: transparent; opacity:50%;" title="Contact data and server adress of your organization."></fa-icon>
+        <div class="buttons">
+            <button *ngIf="!channelsEditionActive" class="settingEditBtn" (click)="editionActiveToggle()">Edit</button>
+        </div>
+    </div>
+    
+    <!-- kiedy edycja nie jest aktywna -->
+    <!-- <div *ngIf="!channelsEditionActive" class="list">
+        <ng-container >
+            <div class="row">
+                <h5 class="rowTitle">Email: </h5>
+                <div *ngIf="!channelsEditionActive" class="rowValueWrapper">
+                    <p class="rowValue">{{channels.value}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <h5 class="rowTitle">Server: </h5>
+                <div *ngIf="!channelsEditionActive" class="rowValueWrapper">
+                    <p class="rowValue">{{channels.server}}</p>
+                </div>
+            </div>
+        </ng-container>
+    </div> -->
+    <ng-container *ngIf="!channelsEditionActive">
+        <ng-container *ngFor="let channel of channels">
+            <div class="contactInfo" >
+              <ng-container >
+                  <div class="contactRow">
+                      <h5 class="contactRowTitle">{{channel.name}}</h5>
+                      <div class="contactRowValueWrapper">
+                          <p class="contactRowValue">{{channel.value}}</p>
+                      </div>
+                  </div>
+              </ng-container>
+          </div>
+        </ng-container>
+    </ng-container>
+
+    <!-- kiedy edycja jest aktywna -->
+    <div *ngIf="channelsEditionActive" class="list">
+        <form [formGroup]="channelsEditForm" (ngSubmit)="channelsOnSubmit()">
+            <div class="row">
+                <h5 class="rowTitle">{{channels[0].name}}</h5>
+                <div *ngIf="channelsEditionActive" class="editRowValueWrapper">
+                    <input formControlName="email" id="email" class="input" type="text" placeholder={{channels[0].value}} (focus)="isNameFocused = true" (blur)="isNameFocused = false">
+                    <ng-container *ngIf="
+                        channelsEditForm.get('email')?.invalid && 
+                        channelsEditForm.get('email')?.errors &&
+                        channelsEditForm.get('email')?.dirty || 
+                        channelsEditForm.get('email')?.touched">
+                        <span *ngIf="channelsEditForm.get('email')?.hasError('required') && isNameFocused === false">
+                            Email is required!
+                        </span>
+                        <span *ngIf="channelsEditForm.get('email')?.hasError('pattern') && isNameFocused === false">
+                            Bad format!
+                        </span>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="row">
+                <h5 class="rowTitle">{{channels[1].name}}</h5>
+                <div *ngIf="channelsEditionActive" class="editRowValueWrapper">
+                    <input formControlName="server" id="server" class="input" type="text" placeholder={{channels[1].value}} (focus)="isMailFocused = true" (blur)="isMailFocused = false">
+                    <ng-container *ngIf="
+                        channelsEditForm.get('server')?.invalid && 
+                        channelsEditForm.get('server')?.errors &&
+                        channelsEditForm.get('server')?.dirty || 
+                        channelsEditForm.get('server')?.touched">
+                        <span *ngIf="channelsEditForm.get('server')?.hasError('required') && isMailFocused === false">
+                            Server number is required!
+                        </span>
+                        <span *ngIf="channelsEditForm.get('server')?.hasError('server') && isMailFocused === false">
+                            Bad server format!
+                        </span>
+                    </ng-container>
+                </div>
+            </div>
+        </form>
+        <div class="submitBtnContainer">
+            <button *ngIf="channelsEditionActive" [disabled]="!channelsEditForm.valid" class="submitBtn" (click)="channelsOnSubmit()">Confirm</button>
+            <button *ngIf="channelsEditionActive" class="submitBtn" (click)="editionActiveToggle()">Cancel</button>
+        </div>
+
+        
+        
+    </div>
+    
+</div>

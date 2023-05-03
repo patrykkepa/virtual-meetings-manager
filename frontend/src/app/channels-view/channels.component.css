@@ -1,0 +1,140 @@
+.accountSettings {
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+.accountSettings input {
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    width: 220px;
+    background: transparent;
+}
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.header .buttons {
+    margin: auto 0;
+}
+.header button {
+    margin: auto auto auto auto;
+    /* background: white !important; */
+    background: none;
+    border: 1px solid black;
+    cursor: pointer;
+    min-width: 60px;
+    padding: 5px 8px;
+    margin-right: 10px;
+    font-weight: 700;
+}
+.list {
+    width: 1020px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.list p, h5 {
+    margin: 0;
+}
+.contactInfo {
+    /* width: 1020px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contactInfo p, h5 {
+    margin: 0;
+  }
+  .contactRow {
+    width: 100%;
+    /* background: white; */
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 8px 0px;
+    margin: 0 auto 5px 0;
+    display: flex;
+    flex-direction: row;
+  }
+  .contactRowTitle {
+    width: 100px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+    color: rgba(0, 0, 0, 0.4);
+  }
+  .contactRowValueWrapper {
+    display: flex;
+    flex-direction: row;
+    /* width: 100%; */
+    justify-content: space-between;
+  }
+  .contactRowValue {
+    padding-left: 20px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1);
+  }
+  
+.row {
+    width: 1020px;
+    /* background: white; */
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 8px 0px;
+    margin: 0 auto 5px 0;
+    display: flex;
+    flex-direction: row;
+}
+.rowTitle {
+    width: 100px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.rowValueWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+.rowValue {
+    padding-left: 20px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1);
+}
+
+
+
+/* EDIT VIEW */
+.editRowValueWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.input {
+    margin-left: 20px;
+}
+
+
+
+/* BUTTONS */
+.submitBtnContainer {
+    margin: 20px auto 0 auto !important;
+}
+.submitBtn {
+    margin: 20px 10px 0 10px !important;
+    background: transparent;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 100px;
+    padding: 5px 8px;
+    font-weight: 700;
+}
+
+/* VALIDATION */
+input.ng-invalid.ng-touched {
+    border-color: red;
+}
+span {
+    color: red;
+    font-size: 12px;
+    margin-left: 20px;
+}

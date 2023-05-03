@@ -1,0 +1,58 @@
+.toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    width: 1020px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: #343a40; */
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 800;
+    padding-right: 20px;
+  }
+
+  .toolbar button {
+    margin: 0 0 0 auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0px 8px;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .toolbar img {
+    width: auto;
+    height: 60px;
+    background: transparent;
+    background-color:transparent;
+    background-color: #f7f7f7
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  .logoPlaceholder {
+    margin: 0 30px;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+  }
+
+  .toolbar .right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .toolbar .right .userRole {
+    margin-right: 10px;
+  }
+  .toolbar .right button {
+    margin-left: 20px;
+  }

@@ -1,0 +1,27 @@
+<div class="toolbar-wrapper">
+  <div class="toolbar" role="banner">
+    <div class="logo">
+      <div class="logoPlaceholder">
+        <ng-container *ngIf="authData">
+          <img src="" onerror="this.src='../../assets/RobloxLogo.png'" alt="logo">
+        </ng-container>
+      </div>
+  
+      
+    </div>
+  
+    <ng-container *ngIf="authData">
+      <span>Virtual meeting manager for {{authData.organization}}</span>
+    </ng-container>
+  
+  
+    <div *ngIf="authData" class="right">
+      <span></span>
+      <button class="logOutBtn" routerLink="/" (click)="logOut()">Log out</button>
+    </div>
+  
+      
+  
+  </div>
+</div>
+
