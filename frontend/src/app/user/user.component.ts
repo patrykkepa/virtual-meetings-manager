@@ -44,7 +44,7 @@ export class UserComponent implements OnInit, OnChanges {
 
   //Zmienne wyświetlania walidacji
   isNameFocused = false;
-  isMailFocused = false;
+  isAddMailFocused = false;
 
   // Zmienne wwyświetlania edycji personal data
   userEditionActive: boolean = false;

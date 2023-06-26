@@ -6,6 +6,7 @@ import { SHA256, enc } from 'crypto-js';
 import { faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 
 import { ChangePasswordService} from '../services/change-password.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-change-password',
@@ -15,12 +16,15 @@ import { ChangePasswordService} from '../services/change-password.service';
 export class ChangePasswordComponent implements OnInit {
 
   constructor(
+    private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
     private changePasswordService: ChangePasswordService,
   ) { }
 
   ngOnInit(): void {
+    this.authService.getAuth();
+    this.authService.authData.subscribe(authData => this.authData = authData)
     this.changePasswordService.oldPasswordCorrect.subscribe(oldPasswordCorrect => this.oldPasswordCorrect = oldPasswordCorrect)
     this.changePasswordService.passwordStrength.subscribe(passwordStrength => this.passwordStrength = passwordStrength)
     this.changePasswordService.passwordTooWeak.subscribe(passwordTooWeak => this.passwordTooWeak = passwordTooWeak)
@@ -30,7 +34,8 @@ export class ChangePasswordComponent implements OnInit {
   faEye = faEye;
   faEyeSlash = faEyeSlash;
 
-  @Input() profile: any
+  authData: any;
+
 
   // Zmienne password strength i show/hide
   oldPasswordCorrect: any = true;
@@ -97,6 +102,7 @@ export class ChangePasswordComponent implements OnInit {
       password: this.changePasswordForm.value.password
     }
     this.changePasswordService.postChangePassword(payload)
+    console.log(this.authData)
   }
   
   // Obsługa pokazywania i ukrywania hasła
@@ -116,8 +122,9 @@ export class ChangePasswordComponent implements OnInit {
       let oldPassword = {
         password: this.changePasswordForm.value.oldPassword
       }
-      let hashPassword = SHA256(this.changePasswordForm.value.password as string).toString(enc.Hex)
+      let hashPassword = SHA256(this.changePasswordForm.value.password as any).toString(enc.Hex)
       let payload = {
+        uuid: this.authData.uuid,
         password: this.changePasswordForm.value.password
       }
       console.log(payload)

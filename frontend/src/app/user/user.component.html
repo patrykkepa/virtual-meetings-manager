@@ -1,6 +1,8 @@
 <div *ngIf="profile" class="accountSettings">
     <div class="header">
-        <h2 *ngIf="!changePasswordActive">Account info</h2><fa-icon [icon]="faInfo"  style="margin-left: -660px; margin-top:20px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: transparent; opacity:50%;" title="Your contact data. You can update them."></fa-icon>
+        <h2 *ngIf="!changePasswordActive">Account info</h2>
+        <fa-icon *ngIf="!userEditionActive" [icon]="faInfo"  style="margin-left: -660px; margin-top:20px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: transparent; opacity:50%;" title="Your contact data. You can update them."></fa-icon>
+        <fa-icon *ngIf="userEditionActive" [icon]="faInfo"  style="margin-left: -872px; margin-top:20px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: transparent; opacity:50%;" title="Your contact data. You can update them."></fa-icon>
         <div class="buttons">
             <button *ngIf="!userEditionActive && !changePasswordActive" class="settingEditBtn" routerLink="/changePassword">Change Password</button>
             <button *ngIf="!userEditionActive && !changePasswordActive" class="settingEditBtn" (click)="editionActiveToggle()">Edit</button>
@@ -25,7 +27,7 @@
         </ng-container>
         <ng-container *ngIf="changePasswordActive">
             <app-change-password
-                [profile]="profile"
+
                 (changePasswordClose)="changePasswordActiveToggle()"
             ></app-change-password>
         </ng-container>
@@ -56,16 +58,16 @@
             <div class="row">
                 <h5 class="rowTitle">Email: </h5>
                 <div *ngIf="userEditionActive" class="editRowValueWrapper">
-                    <input formControlName="email" id="email" class="input" type="text" placeholder={{profile.value.email}} (focus)="isMailFocused = true" (blur)="isMailFocused = false">
+                    <input formControlName="email" id="email" class="input" type="text" placeholder={{profile.value.email}} (focus)="isAddMailFocused = true" (blur)="isAddMailFocused = false">
                     <ng-container *ngIf="
                         profileEditForm.get('email')?.invalid && 
                         profileEditForm.get('email')?.errors &&
                         profileEditForm.get('email')?.dirty || 
                         profileEditForm.get('email')?.touched">
-                        <span *ngIf="profileEditForm.get('email')?.hasError('required') && isMailFocused === false">
+                        <span *ngIf="profileEditForm.get('email')?.hasError('required') && isAddMailFocused === false">
                             Email is required!
                         </span>
-                        <span *ngIf="profileEditForm.get('email')?.hasError('email') && isMailFocused === false">
+                        <span *ngIf="profileEditForm.get('email')?.hasError('email') && isAddMailFocused === false">
                             Bad email format!
                         </span>
                     </ng-container>

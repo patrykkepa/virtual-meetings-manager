@@ -2,7 +2,7 @@
     <!-- Nagłówek announcements -->
     <div class="header">
         <h2>Announcements</h2><fa-icon [icon]="faInfo"  style="margin-left: 5px; margin-top:20px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: transparent; opacity:50%;" title="You can update, delete and add new annoucements."></fa-icon>
-        <button *ngIf="!announcementsEditionActive && announcementNumber == null" (click)="announcementsEditionToggle()">{{announcements.length == 0 ? 'Add' : 'Edit'}}</button>
+        <button *ngIf="!announcementsEditionActive" (click)="announcementsEditionToggle()">{{announcements.length == 0 ? 'Add' : 'Edit'}}</button>
     </div>
     <div class="listLabel">
         <h5 class="listLabelTitle short">Date</h5>
@@ -17,17 +17,17 @@
     <!-- Lista announcements -->
     <div *ngFor="let announcement of announcements, let i = index" class="list">
         <div *ngIf="!announcementsEditionActive">
-            <div class="row" [ngClass]="announcementNumber == i ? 'special' : 'regular'">
-                <ng-container *ngIf="announcementNumber != i ">
+            <div class="row" [ngClass]="announcementNumber == i ? 'regular' : 'regular'">
+                <ng-container >
                     <button (click)="announcementsRowClick(i)" class="moreBtn">
                         <fa-icon [icon]="faAngleRight" title="More informations."></fa-icon>
                     </button>
                 </ng-container>
-                <ng-container *ngIf="announcementNumber == i">
+                <!-- <ng-container *ngIf="announcementNumber == i">
                     <button (click)="announcementsRowClick(i)" class="moreBtn">
                         <fa-icon [icon]="faAngleDown"></fa-icon>
                     </button>
-                </ng-container>
+                </ng-container> -->
                 <p class="rowValue short" title="{{announcement.date}}">{{(announcement.date?.length > 25) ? announcement.date.substring(0,25)+'...' : announcement.date}}</p>
                 <p class="rowValue short" title="{{announcement.hour}}">{{announcement.hour}}</p>
                 <p id="rowValueText" class="rowValue" title="{{announcement.text}}">{{(announcement.text?.length > 30) ? announcement.text.substring(0,30)+'...' : announcement.text}}</p>
@@ -88,15 +88,15 @@
             <div id="addRow" class="row">
                 <div class="addInputContainer">
                     <input  formControlName="date" [(ngModel)]="date" class="addInput " placeholder="Full date" (focus)="isAddDateFocused = true" (blur)="isAddDateFocused = false">
-                    <fa-icon [icon]="faInfo" [style.opacity]="isAddDateFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Enter the event date."></fa-icon>
+                    <fa-icon [icon]="faInfo" [style.opacity]="isAddDateFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: transparent" title="Enter the event date."></fa-icon>
                 </div>
                 <div class="addInputContainer">
                     <input formControlName="hour" [(ngModel)]="hour" class="addInput " placeholder="Starting hour" (focus)="isAddHourFocused = true" (blur)="isAddHourFocused = false">
-                    <fa-icon [icon]="faInfo" [style.opacity]="isAddHourFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Enter the event hour."></fa-icon>
+                    <fa-icon [icon]="faInfo" [style.opacity]="isAddHourFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: transparent" title="Enter the event hour."></fa-icon>
                 </div>
                 <div class="addInputContainer">
                     <input formControlName="text" [(ngModel)]="text" class="addInput last" placeholder="Message" (focus)="isAddTextFocused = true" (blur)="isAddTextFocused = false">
-                    <fa-icon  [icon]="faInfo" [style.opacity]="isAddTextFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: white" title="Enter the message."></fa-icon>
+                    <fa-icon  [icon]="faInfo" [style.opacity]="isAddTextFocused ? '0%' : '100%'" style="margin-left: -14px; cursor: pointer; color: rgba(0, 0, 0, 0.6); background: transparent" title="Enter the message."></fa-icon>
                 </div>
                 <button class="editDeleteBtn" (click)="announcementsOnAdd()" [disabled]="!announcementsAddForm.valid"><fa-icon [icon]="faPlus" title="Create new announcement."></fa-icon></button>
             </div>

@@ -24,7 +24,7 @@ export class ChannelsComponent implements OnInit, OnChanges {
     // Obsługa inputów edycji profilu
     if(this.channels){
       this.channelsEditForm = this.formBuilder.group({
-        email: [this.channels[0].value],
+        email: [this.channels[0].value, [Validators.required, Validators.email]],
         server: [this.channels[1].value]
       })
     }
@@ -37,8 +37,8 @@ export class ChannelsComponent implements OnInit, OnChanges {
   @Input() validatorChannels: any;
 
   //Zmienne wyświetlania walidacji
-  isNameFocused = false;
-  isMailFocused = false;
+  isAddServerFocused = false;
+  isAddMailFocused = false;
 
   // Zmienne wwyświetlania edycji personal data
   channelsEditionActive: boolean = false;

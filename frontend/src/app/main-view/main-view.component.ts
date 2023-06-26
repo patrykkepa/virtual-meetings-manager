@@ -32,7 +32,7 @@ export class MainViewComponent implements OnInit {
     // Wywołanie zapytań api
     this.authService.getAuth();
     this.profileService.getProfile();
-    this.validatorsService.getValidatorProfile();
+    // this.validatorsService.getValidatorProfile();
     // this.validatorsService.getValidatorAnnouncements();
     // this.entitiesService.getEntitiesAllowed();
     this.channelsService.getChannels();
@@ -41,7 +41,7 @@ export class MainViewComponent implements OnInit {
 
     // Subskrybcja do informacji które następnie przekazywane są inputem w dół
     this.profileService.profile.subscribe(profile => this.profile = profile)
-    this.validatorsService.validatorProfile.subscribe(validatorProfile => this.validatorProfile = validatorProfile)
+    // this.validatorsService.validatorProfile.subscribe(validatorProfile => this.validatorProfile = validatorProfile)
     this.validatorsService.validatorAnnouncements.subscribe(validatorAnnouncements => this.validatorAnnouncements = validatorAnnouncements)
     // this.entitiesService.entitiesEvents.subscribe(entitiesEvents => this.entitiesEvents = entitiesEvents)
     // this.entitiesService.entitiesAllowed.subscribe(entitiesAllowed => this.entitiesAllowed = entitiesAllowed)
